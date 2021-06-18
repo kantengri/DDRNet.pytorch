@@ -102,6 +102,8 @@ class Cityscapes(BaseDataset):
         name = item["name"]
         image = cv2.imread(os.path.join(self.root,'cityscapes',item["img"]),
                            cv2.IMREAD_COLOR)
+        if image is None:
+            raise Exception(f"{os.path.join(self.root,'cityscapes',item['img'])} failed to read")
         size = image.shape
 
         if 'test' in self.list_path:

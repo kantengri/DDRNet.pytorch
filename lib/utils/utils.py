@@ -205,7 +205,10 @@ class Map16(object):
                     [128, 0, 128 ],
                     [128, 128, 0 ],
                     [128, 128, 128 ],
-                    [192, 192, 192 ]], dtype=np.uint8)
+                    [192, 192, 192 ],
+                    [192, 0, 192 ],
+                    [192, 192, 0 ]
+                    ], dtype=np.uint8)
         self.outDir = "output/map16"
         self.vedioCap = vedioCap
         self.visualpoint = visualpoint
@@ -216,11 +219,11 @@ class Map16(object):
         pred = np.int32(pred)
         pixs = pred.size
         uniques, counts = np.unique(pred, return_counts=True)
-        for idx in np.argsort(counts)[::-1]:
-            name = self.names[uniques[idx]]
-            ratio = counts[idx] / pixs * 100
-            if ratio > 0.1:
-                print("  {}: {:.2f}%".format(name, ratio))
+        # for idx in np.argsort(counts)[::-1]:
+        #     name = self.names[uniques[idx]]
+        #     ratio = counts[idx] / pixs * 100
+        #     if ratio > 0.1:
+        #         print("  {}: {:.2f}%".format(name, ratio))
 
         # calculate point
         if self.visualpoint:
